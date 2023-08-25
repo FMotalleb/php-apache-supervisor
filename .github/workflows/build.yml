@@ -1,11 +1,12 @@
 name: Build
+
 on:
   push:
     branches:
       - "**"
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: FMotalleb/php-apache-supervisor
+  IMAGE_NAME: ghcr.io/FMotalleb/php-apache-supervisor
 
 jobs:
   generateInputPaths:
@@ -49,5 +50,5 @@ jobs:
           context: .
           file: ./${{ matrix.path }}/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}-${{ matrix.path }}
+          tags: ${{ env.IMAGE_NAME }}:${{ matrix.path }}
           labels: ${{ steps.meta.outputs.labels }}
