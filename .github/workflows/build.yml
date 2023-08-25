@@ -1,7 +1,13 @@
 name: Build
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - "**"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   generateInputPaths:
