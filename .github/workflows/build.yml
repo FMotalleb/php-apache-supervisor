@@ -1,29 +1,26 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# GitHub recommends pinning actions to a commit SHA.
-# To get a newer version, you will need to update the SHA.
-# You can also reference a tag or branch, but the action may change without warning.
-
-name: Publish Container to Github
+name: Build
 
 on:
-  push:
-    branches:
-      - "**"
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  workflow_dispatch:
 
 jobs:
-  build-and-push-image:
+  generateInputPaths:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate matrix with all modules of WhatTheHack repository
+        id: set-matrix
+        run: |
+          echo "::set-output name=matrix::$(ls -l | grep '^d' | awk -F ' ' '{print $9}' | jq -R -s -c 'split("\n") | map(select(length > 0))')"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+  checklinks:
+    needs: generateInputPaths
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        path: ${{ fromJson(needs.generateInputPaths.outputs.matrix) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
