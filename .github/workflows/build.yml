@@ -12,9 +12,15 @@ env:
 jobs:
   generateInputPaths:
     runs-on: ubuntu-latest
-  strategy:
-    matrix:
-      path: ["php-7.4", "php-8.0", "php-8.1", "php-8.2", "php-8.3.0beta3"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Generate matrix with all modules of WhatTheHack repository
+        id: set-matrix
+        run: |
+          echo "::set-output name=matrix::$(ls -l | grep '^d' | awk -F ' ' '{print $9}' | jq -R -s -c 'split("\n") | map(select(length > 0))')"
+    outputs:
+      matrix:
+        path: ${{ steps.set-matrix.outputs.matrix }}
   build:
     needs: generateInputPaths
     runs-on: ubuntu-latest
