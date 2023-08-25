@@ -25,14 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        path: ${{ fromJson(needs.generateInputPaths.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.generateInputPaths.outputs.matrix) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: changing directory
         run: |
-          echo "running the steps for $1" 
+          ENV 
           cd $1
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
