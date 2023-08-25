@@ -1,10 +1,8 @@
 name: Build
-
 on:
   push:
     branches:
       - "**"
-
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: FMotalleb/php-apache-supervisor
