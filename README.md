@@ -23,3 +23,51 @@ In summary, `php-supervisor` is a powerful and convenient tool that simplifies t
 The only change you may need to apply to your Dockerfiles is replacing the image name from `php:<tag>-alpine|bookworm` with `ghcr.io/fmotalleb/php-supervisor:php-<tag>`.
 
 All images are based on a stable Debian version derived from PHP's original image.
+## Laravel App Example
+```Dockerfile
+# FROM php:8.2-apache-bookwrom ->
+FROM ghcr.io/fmotalleb/php-supervisor:php-8.2-apache
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libsodium-dev \
+    git
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    sodium \
+    soap
+
+
+# Apache Mods
+RUN a2enmod rewrite
+ENV ALLOW_OVERRIDE=true
+
+
+# Clean up unnecessary packages
+RUN apt-get remove --purge -y git && \
+    apt-get autoremove --purge -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY ${PWD}/ /var/www
+
+WORKDIR /var/www/
+
+# install composer + dependencies
+COPY --from=composer:2.5.8 /usr/bin/composer /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install
+```
