@@ -25,40 +25,30 @@ The only change you may need to apply to your Dockerfiles is replacing the image
 All images are based on a stable Debian version derived from PHP's original image.
 ## Laravel App Example
 ```Dockerfile
-# FROM php:8.2-apache-bookwrom ->
-FROM ghcr.io/fmotalleb/php-supervisor:php-8.2-apache
+ARG COMPOSER_IMAGE_TAG="2.5.8"
+ARG PHP_VERSION="8.2"
+FROM composer:${COMPOSER_IMAGE_TAG} AS composer
+
+FROM ghcr.io/fmotalleb/php-supervisor:php-${PHP_VERSION}-apache
+
+ARG APACHE_CONF_PATH="/etc/apache2/sites-available/000-default.conf"
+ARG COMPOSER_INSTALL_PATH="/usr/local/bin/composer"
+ARG COMPOSER_ARGS="install"
+ARG PHP_EXTENSIONS="pdo_mysql mbstring exif pcntl bcmath gd sodium soap"
+ARG APT_PACKAGES="curl libpng-dev libonig-dev libxml2-dev zip unzip libsodium-dev git"
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    libsodium-dev \
-    git
+RUN apt-get update && apt-get install -y --no-install-recommends ${APT_PACKAGES}
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql \
-    mbstring \
-    exif \
-    pcntl \
-    bcmath \
-    gd \
-    sodium \
-    soap
-
+RUN docker-php-ext-install ${PHP_EXTENSIONS}
 
 # Apache Mods
 RUN a2enmod rewrite
 ENV ALLOW_OVERRIDE=true
 
-
 # Clean up unnecessary packages
-RUN apt-get remove --purge -y git && \
-    apt-get autoremove --purge -y && \
+RUN apt-get autoremove --purge -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -66,8 +56,11 @@ COPY ${PWD}/ /var/www
 
 WORKDIR /var/www/
 
+# Apache config
+RUN sed 's@/var/www/html@/var/www/public@g' ${APACHE_CONF_PATH} | tee ${APACHE_CONF_PATH}
+
 # install composer + dependencies
-COPY --from=composer:2.5.8 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer /usr/bin/composer ${COMPOSER_INSTALL_PATH}
 ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install
+RUN ${COMPOSER_INSTALL_PATH} ${COMPOSER_ARGS}
 ```
