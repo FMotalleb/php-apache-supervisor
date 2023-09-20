@@ -3,7 +3,6 @@
 **PHP-Supervisor: An Out-of-the-Box Solution for PHP-Based Images**
 
 * Supported tags:
-
     > **apache**
     >
     > * apache-bookworm
