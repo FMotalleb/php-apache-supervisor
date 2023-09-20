@@ -23,7 +23,6 @@ jobs:
           "8.1-fpm-bookworm",
           "7.4-fpm-bullseye",
           "7.3-fpm-bullseye",
-          "5.6-fpm-stretch",
         ]
         # path: 
     steps:
