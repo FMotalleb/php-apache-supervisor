@@ -107,7 +107,7 @@ COPY ${PWD}/ /var/www
 WORKDIR /var/www/
 
 # Apache config
-RUN sed 's@/var/www/html@/var/www/public@g' /etc/apache2/sites-available/000-default.conf | tee ${APACHE_CONF_PATH}
+RUN sed 's@/var/www/html@/var/www/public@g' /etc/apache2/sites-available/000-default.conf | tee /etc/apache2/sites-available/000-default.conf
 
 # install composer + dependencies
 COPY --from=composer /usr/bin/composer ${COMPOSER_INSTALL_PATH}
