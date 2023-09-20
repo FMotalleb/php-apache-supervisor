@@ -1,5 +1,6 @@
-FROM php:8.2-fpm-bookworm
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}
 RUN apt-get -y update && apt-get install -y supervisor && apt-get clean
-COPY php-8.2-fpm/defaults.d /etc/supervisor/defaults.d
-COPY php-8.2-fpm/supervisord.conf /etc/supervisor/
+COPY fpm/defaults.d /etc/supervisor/defaults.d
+COPY fpm/supervisord.conf /etc/supervisor/
 CMD [ "supervisord","-n","-c","/etc/supervisor/supervisord.conf" ]
