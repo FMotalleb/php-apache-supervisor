@@ -69,7 +69,7 @@ you are able to set the desired Composer/PHP version, Composer arguments, defaul
 * Example build command to build this image for php:8.1-apache-bookworm and latest version of composer
 
 ```bash
-docker build . -t my_php:8.1 --build-arg "COMPOSER_IMAGE_TAG=latest" --build-arg "PHP_VERSION=8.1"
+docker build . -t my_php:8.1 --build-arg "COMPOSER_IMAGE_TAG=latest" --build-arg "PHP_VERSION=8.1-apache-bookworm"
 ```
 
 * Dockerfile
