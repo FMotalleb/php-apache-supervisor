@@ -32,6 +32,7 @@ FROM composer:${COMPOSER_IMAGE_TAG} AS composer
 FROM ghcr.io/fmotalleb/php-supervisor:php-${PHP_VERSION}-apache
 
 ARG APACHE_CONF_PATH="/etc/apache2/sites-available/000-default.conf"
+ARG APACHE_MODS="rewrite"
 ARG COMPOSER_INSTALL_PATH="/usr/local/bin/composer"
 ARG COMPOSER_ARGS="install"
 ARG PHP_EXTENSIONS="pdo_mysql mbstring exif pcntl bcmath gd sodium soap zip"
@@ -44,7 +45,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends ${APT_PACKAGES}
 RUN docker-php-ext-install ${PHP_EXTENSIONS}
 
 # Apache Mods
-RUN a2enmod rewrite
+RUN a2enmod ${APACHE_MODS}
 ENV ALLOW_OVERRIDE=true
 
 # Clean up unnecessary packages
