@@ -20,4 +20,6 @@ Whether you're a seasoned developer or new to containerization, `php-supervisor`
 
 In summary, `php-supervisor` is a powerful and convenient tool that simplifies the deployment of PHP applications in a containerized environment. By leveraging Supervisor internally, it ensures the smooth execution of PHP and Apache processes, allowing you to focus on what matters most: building and delivering exceptional web applications.
 
-As the tags are similar to PHP's original tags, the only change you may need to apply to your Dockerfiles is replacing the image name from `php:<tag>` with `ghcr.io/fmotalleb/php-supervisor:<tag>`.
+As the tags are similar to PHP's original tags, the only change you may need to apply to your Dockerfiles is replacing the image name from `php:<tag>-alpine|bookworm` with `ghcr.io/fmotalleb/php-supervisor:<tag>`.
+
+All images are based on a stable Debian version derived from PHP's original image.
