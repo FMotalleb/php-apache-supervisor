@@ -12,23 +12,12 @@ env:
   IMAGE_NAME: ghcr.io/fmotalleb/php-supervisor
 
 jobs:
-  generateInputPaths:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Generate matrix with all modules of WhatTheHack repository
-        id: set-matrix
-        run: |
-          ("8.2-fpm-bookworm" "8.1-fpm-bookworm" )
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
   build:
-    needs: generateInputPaths
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        tag: ${{ fromJson(needs.generateInputPaths.outputs.matrix) }}
+        tag: ["8.2-fpm-bookworm", "8.1-fpm-bookworm"]
         # path: 
     steps:
       - name: Checkout repository
