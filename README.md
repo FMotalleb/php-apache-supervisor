@@ -6,6 +6,8 @@
 
     > **apache**
     >
+    > * apache-bookworm
+    > * apache-bullseye
     > * 8.3-rc-apache-bookworm
     > * 8.2-apache-bookworm
     > * 8.1-apache-bookworm
@@ -14,6 +16,8 @@
 
     > **fpm**
     >
+    > * fpm-bookworm
+    > * fpm-bullseye
     > * 8.3-rc-fpm-bookworm
     > * 8.2-fpm-bookworm
     > * 8.1-fpm-bookworm
@@ -45,9 +49,10 @@ In summary, `php-supervisor` is a powerful and convenient tool that simplifies t
 The only change you may need to apply to your Dockerfiles is replacing the image name from `php:<tag>` with `ghcr.io/fmotalleb/php-supervisor:<tag>`. (only supported tags are stable Debian builds as provided above)
 
 * If you need to build this image for any other tags
-    * Note 1. Alpine is not supported
-    * Note 2. Only fpm or Apache are available
-    * Note 3. In order to build an image you need to use a Debian +buster base image (currently Buster and Bookworm)  
+  * Note 1. Alpine is not supported
+  * Note 2. Only fpm or Apache are available
+  * Note 3. In order to build an image you need to use a Debian +buster base image (currently Buster and Bookworm)  
+
 ```
 git clone https://github.com/FMotalleb/php-supervisor.git
 cd php-supervisor
