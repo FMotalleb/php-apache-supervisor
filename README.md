@@ -81,13 +81,11 @@ FROM composer:${COMPOSER_IMAGE_TAG} AS composer
 
 FROM ghcr.io/fmotalleb/php-supervisor:${PHP_VERSION}
 
-ARG APACHE_CONF_PATH="/etc/apache2/sites-available/000-default.conf"
 ARG APACHE_MODS="rewrite"
 ARG COMPOSER_INSTALL_PATH="/usr/local/bin/composer"
 ARG COMPOSER_ARGS="install"
 ARG APT_PACKAGES="curl libpng-dev libonig-dev libxml2-dev zip unzip libsodium-dev git libzip-dev"
 ARG PHP_EXTENSIONS="pdo_mysql mbstring exif pcntl bcmath gd sodium soap zip"
-ARG PUBLIC_PATH="/var/www/public"
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends ${APT_PACKAGES}
@@ -109,7 +107,7 @@ COPY ${PWD}/ /var/www
 WORKDIR /var/www/
 
 # Apache config
-RUN sed 's@/var/www/html@${PUBLIC_PATH}@g' ${APACHE_CONF_PATH} | tee ${APACHE_CONF_PATH}
+RUN sed 's@/var/www/html@/var/www/public@g' /etc/apache2/sites-available/000-default.conf | tee ${APACHE_CONF_PATH}
 
 # install composer + dependencies
 COPY --from=composer /usr/bin/composer ${COMPOSER_INSTALL_PATH}
