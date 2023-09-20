@@ -10,7 +10,7 @@ With `php-supervisor`, you can effortlessly containerize your PHP applications w
 
 2. **Apache Integration**: Seamlessly incorporate the Apache web server into your containerized environment, providing a complete web hosting solution.
 
-3. **Supervisor for Process Management**: Supervisor is employed internally to take care of starting, monitoring, and managing both PHP and Apache processes within the container.
+3. **Supervisor for Process Management**: The supervisor is employed internally to take care of starting, monitoring, and managing both PHP and Apache processes within the container.
 
 4. **Custom Configuration**: Tailor the Supervisor configuration to meet your specific requirements, ensuring that it aligns perfectly with your application's needs.
 
@@ -18,8 +18,8 @@ With `php-supervisor`, you can effortlessly containerize your PHP applications w
 
 Whether you're a seasoned developer or new to containerization, `php-supervisor` offers a user-friendly solution for deploying PHP applications while taking the complexity out of process management. Say goodbye to the challenges of coordinating PHP and Apache in a container – this image provides an out-of-the-box answer to your PHP+Supervisor containerization needs.
 
-In summary, `php-supervisor` is a powerful and convenient tool that simplifies the deployment of PHP applications in a containerized environment. By leveraging Supervisor internally, it ensures the smooth execution of PHP and Apache processes, allowing you to focus on what matters most: building and delivering exceptional web applications.
+In summary, `php-supervisor` is a powerful and convenient tool that simplifies the deployment of PHP applications in a containerized environment. By leveraging Supervisor internally, ensures the smooth execution of PHP and Apache processes, allowing you to focus on what matters most: building and delivering exceptional web applications.
 
-As the tags are similar to PHP's original tags, the only change you may need to apply to your Dockerfiles is replacing the image name from `php:<tag>-alpine|bookworm` with `ghcr.io/fmotalleb/php-supervisor:<tag>`.
+The only change you may need to apply to your Dockerfiles is replacing the image name from `php:<tag>-alpine|bookworm` with `ghcr.io/fmotalleb/php-supervisor:php-<tag>`.
 
 All images are based on a stable Debian version derived from PHP's original image.
