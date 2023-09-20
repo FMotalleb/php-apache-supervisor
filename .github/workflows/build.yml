@@ -9,7 +9,7 @@ on:
       - "**"
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/fmotalleb/php-apache-supervisor
+  IMAGE_NAME: ghcr.io/fmotalleb/php-supervisor
 
 jobs:
   generateInputPaths:
