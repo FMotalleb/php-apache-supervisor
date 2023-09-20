@@ -1,6 +1,6 @@
 # PHP+Supervisor+Apache
 
-**PHP-Supervisor: An Out-of-the-Box Solution for PHP-Based Images**
+**PHP-Supervisor: A Solution for PHP-Based Images**
 
 * Supported tags:
     > **apache**
