@@ -66,7 +66,7 @@ All images are based on a stable Debian version derived from PHP's original imag
 Using build arguments enables you to customize the build process. With this Dockerfile,
 you are able to set the desired Composer/PHP version, Composer arguments, default PHP mods, Apache mods, and more.
 
-* Example build command to build this image for php:8.1-apache-bookworm and the latest version of composer
+* Example build command to build this image for php:8.1-apache-bookworm and version `2.5.8` of composer
 
 ```bash
 docker build . -t my_php:8.1 --build-arg "COMPOSER_IMAGE_TAG=2.5.8" --build-arg "PHP_VERSION=8.1-apache-bookworm"
