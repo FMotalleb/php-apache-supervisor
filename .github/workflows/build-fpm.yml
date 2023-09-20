@@ -42,7 +42,8 @@ jobs:
         with:
           context: .
           file: ./fpm/Dockerfile
-          build-args: "PHP_VERSION:${{ matrix.tag }}"
+          build-args: 
+            PHP_VERSION:${{ matrix.tag }}
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ matrix.tag }}
           labels: ${{ steps.meta.outputs.labels }}
