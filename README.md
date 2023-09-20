@@ -35,7 +35,7 @@ ARG APACHE_CONF_PATH="/etc/apache2/sites-available/000-default.conf"
 ARG COMPOSER_INSTALL_PATH="/usr/local/bin/composer"
 ARG COMPOSER_ARGS="install"
 ARG PHP_EXTENSIONS="pdo_mysql mbstring exif pcntl bcmath gd sodium soap"
-ARG APT_PACKAGES="curl libpng-dev libonig-dev libxml2-dev zip unzip libsodium-dev git"
+ARG APT_PACKAGES="curl libpng-dev libonig-dev libxml2-dev zip unzip libsodium-dev git libzip-dev"
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends ${APT_PACKAGES}
