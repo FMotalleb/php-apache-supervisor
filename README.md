@@ -24,6 +24,13 @@ The only change you may need to apply to your Dockerfiles is replacing the image
 
 All images are based on a stable Debian version derived from PHP's original image.
 ## Laravel App Example
+Using build arguments enables you to customize the build process. With this Dockerfile,
+you are able to set the desired Composer/PHP version, Composer arguments, default PHP mods, Apache mods, and more.
+* Example build command to build this image for php:8.1-apache-bookworm and latest version of composer
+```bash
+docker build . -t my_php:8.1 --build-arg "COMPOSER_IMAGE_TAG=latest" --build-arg "PHP_VERSION=8.1"
+```
+* Dockerfile
 ```Dockerfile
 ARG COMPOSER_IMAGE_TAG="2.5.8"
 ARG PHP_VERSION="8.2"
@@ -35,8 +42,8 @@ ARG APACHE_CONF_PATH="/etc/apache2/sites-available/000-default.conf"
 ARG APACHE_MODS="rewrite"
 ARG COMPOSER_INSTALL_PATH="/usr/local/bin/composer"
 ARG COMPOSER_ARGS="install"
-ARG PHP_EXTENSIONS="pdo_mysql mbstring exif pcntl bcmath gd sodium soap zip"
 ARG APT_PACKAGES="curl libpng-dev libonig-dev libxml2-dev zip unzip libsodium-dev git libzip-dev"
+ARG PHP_EXTENSIONS="pdo_mysql mbstring exif pcntl bcmath gd sodium soap zip"
 ARG PUBLIC_PATH="/var/www/public"
 
 # Install system dependencies
