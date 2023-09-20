@@ -18,6 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         tag: [
+          "fpm-bookworm", 
+          "fpm-bullseye", 
           "8.3-rc-fpm-bookworm",
           "8.2-fpm-bookworm", 
           "8.1-fpm-bookworm",
