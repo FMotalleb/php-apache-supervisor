@@ -7,8 +7,10 @@ on:
   push:
     branches:
       - "**"
-    paths:
-      - "nginx"
+    paths-ignore:
+      - "**/README.md"
+      - "apache/**/*"
+      - "fpm/**/*"
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ghcr.io/fmotalleb/php-supervisor

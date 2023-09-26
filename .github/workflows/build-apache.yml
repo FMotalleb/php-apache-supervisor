@@ -7,8 +7,10 @@ on:
   push:
     branches:
       - "**"
-    paths: 
-      - "**/apache"
+    paths-ignore:
+      - "**/README.md"
+      - "fpm/**/*"
+      - "nginx/**/*"
       
 env:
   REGISTRY: ghcr.io
