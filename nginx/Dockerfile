@@ -6,6 +6,7 @@ FROM nginx:${NGINX_VERSION} AS RUNTIME
 RUN apt-get -y update && apt-get install -y libonig5 libargon2-1 supervisor && apt-get clean
 COPY nginx/defaults.d /etc/supervisor/defaults.d
 COPY nginx/supervisord.conf /etc/supervisor/
+COPY nginx/nginx.d/* /etc/nginx/
 
 # Copy all php files into nginx image
 COPY --from=PHP /etc/apt/preferences.d/no-debian-php    /etc/apt/preferences.d/no-debian-php
