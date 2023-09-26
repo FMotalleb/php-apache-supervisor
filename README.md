@@ -23,6 +23,15 @@
     > * 7.4-fpm-bullseye
     > * 7.3-fpm-bullseye
     >
+
+    > **nginx** *`Unstable`*
+    >
+    > * nginx-fpm-bookworm
+    > * nginx-8.3-rc-fpm-bookworm
+    > * nginx-8.2-fpm-bookworm
+    > * nginx-8.1-fpm-bookworm
+    >
+
 * Example: `docker run --rm -it -p 80:80 ghcr.io/fmotalleb/php-supervisor:8.2-apache-bookworm`
 
 The `php-supervisor` is a turnkey solution designed to replace basic PHP images by seamlessly integrating Supervisor to handle the initiation and management of PHP and Apache processes internally. This comprehensive containerization approach streamlines the deployment and orchestration of PHP applications, making it a valuable tool for developers seeking a hassle-free way to ensure the reliable execution of their web applications.
