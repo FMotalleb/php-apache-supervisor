@@ -24,7 +24,7 @@
     > * 7.3-fpm-bullseye
     >
 
-    > **nginx** *`Unstable`*
+    > **nginx** *`Experimental/Unstable`*
     >
     > * nginx-fpm-bookworm
     > * nginx-8.3-rc-fpm-bookworm
