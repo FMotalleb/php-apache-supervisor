@@ -11,4 +11,3 @@ COPY nginx/php-fpm/ /usr/local/etc/php-fpm.d/
 # USER 1000
 
 CMD [ "supervisord","-n","-c","/etc/supervisor/supervisord.conf" ]
-docker-fpm.ini
