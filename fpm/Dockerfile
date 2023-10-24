@@ -2,5 +2,5 @@ ARG PHP_VERSION
 FROM php:${PHP_VERSION}
 RUN apt-get -y update && apt-get install -y supervisor && apt-get clean
 COPY fpm/defaults.d /etc/supervisor/defaults.d
-COPY fpm/supervisord.conf /etc/supervisor/
+COPY global.supervisor/supervisord.conf /etc/supervisor/
 CMD [ "supervisord","-n","-c","/etc/supervisor/supervisord.conf" ]

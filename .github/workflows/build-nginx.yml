@@ -11,6 +11,7 @@ on:
       - "**/README.md"
       - "apache/**/*"
       - "fpm/**/*"
+      - "example/**/*"
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ghcr.io/fmotalleb/php-supervisor

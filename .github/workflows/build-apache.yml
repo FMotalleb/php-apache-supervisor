@@ -11,6 +11,7 @@ on:
       - "**/README.md"
       - "fpm/**/*"
       - "nginx/**/*"
+      - "example/**/*"
       
 env:
   REGISTRY: ghcr.io
