@@ -84,7 +84,7 @@ docker build . -t my_php:8.1 --build-arg "COMPOSER_IMAGE_TAG=2.5.8" --build-arg 
 
 ```Dockerfile
 
-ARG PHP_VERSION="8.2-apache-bookworm"
+ARG PHP_VERSION="8.3-apache-bookworm"
 FROM ghcr.io/fmotalleb/php-supervisor:${PHP_VERSION}
 
 # Default packages needed for most laravel applications
