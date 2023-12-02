@@ -27,7 +27,7 @@ jobs:
         tag: [
           "apache-bookworm", 
           "apache-bullseye", 
-          "8.3-rc-apache-bookworm",
+          "8.3-apache-bookworm",
           "8.2-apache-bookworm", 
           "8.1-apache-bookworm",
           "7.4-apache-bullseye",

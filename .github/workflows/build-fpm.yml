@@ -25,7 +25,7 @@ jobs:
         tag: [
           "fpm-bookworm", 
           "fpm-bullseye", 
-          "8.3-rc-fpm-bookworm",
+          "8.3-fpm-bookworm",
           "8.2-fpm-bookworm", 
           "8.1-fpm-bookworm",
           "7.4-fpm-bullseye",
